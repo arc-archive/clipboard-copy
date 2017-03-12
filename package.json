@@ -17,6 +17,8 @@
   "scripts": {
     "serve": "node_modules/.bin/polymer serve",
     "lint": "node_modules/.bin/polymer lint clipboard-copy.html",
+    "test-sauce": "node_modules/.bin/polymer test --plugin sauce --job-name \"clipboard-copy:local-test\"",
+    "test": "node_modules/.bin/polymer test",
     "deps": "npm install --quiet && bower install --quiet",
     "update-deps": "npm update --quiet && bower update --quiet"
   },
