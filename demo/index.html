@@ -48,7 +48,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           };
           document.querySelector('paper-icon-button').addEventListener('click', function(e) {
             var button = Polymer.dom(e).localTarget;
-            console.log(button);
             if (document.querySelector('clipboard-copy').copy()) {
               button.icon = 'arc:done';
             } else {
