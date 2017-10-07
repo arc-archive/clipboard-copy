@@ -71,6 +71,17 @@ This element doesn't need styling because it's a logic element without the UI.
      *
      * @event content-copy-error
      */
+    /**
+     * Fired when executing copy function.
+     * This cancelable event is dispatched before running the actual logic
+     * of this element to support platforms that doesn't allow to manage
+     * clipboard with `execCommand('copy')`.
+     *
+     * When the event is canceled then the logic is not executed.
+     *
+     * @event content-copy
+     * @param {String} value A content t be copied to clipboard.
+     */
     properties: {
       /**
        * A content to be copied to the clipboard.
@@ -86,6 +97,9 @@ This element doesn't need styling because it's a logic element without the UI.
      * and false if there was an error.
      */
     copy: function() {
+      if (this._beforeCopy()) {
+        return this._notifyCopied();
+      }
       this.setAttribute('copying', true);
       var snipRange = document.createRange();
       snipRange.selectNodeContents(this.$.content);
@@ -95,9 +109,7 @@ This element doesn't need styling because it's a logic element without the UI.
       var result = false;
       try {
         result = document.execCommand('copy');
-        this.fire('content-copied', null, {
-          bubbles: false
-        });
+        this._notifyCopied();
       } catch (err) {
         // Copy command is not available
         Polymer.Base._error(err);
@@ -108,8 +120,31 @@ This element doesn't need styling because it's a logic element without the UI.
       selection.removeAllRanges();
       this.removeAttribute('copying');
       return result;
+    },
+    /**
+     * Sends the `content-copy` event.
+     * If the event is canceled then the logic from this element won't be
+     * executed. Useful if current platform doesn't support `execCommand('copy')`
+     * and has other way to manage clipboard.
+     *
+     * @return {Boolean} True if handler executed copy function.
+     */
+    _beforeCopy: function() {
+      var event = this.fire('content-copy', {
+        value: this.content
+      }, {
+        cancelable: true
+      });
+      return event.defaultPrevented;
+    },
+    /**
+     * Sends the `content-copied` event that is not bubbling.
+     */
+    _notifyCopied: function() {
+      this.fire('content-copied', null, {
+        bubbles: false
+      });
     }
-
   });
   </script>
 </dom-module>
