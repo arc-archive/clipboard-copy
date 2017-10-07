@@ -16,9 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
     <script src="../../iron-test-helpers/test-helpers.js"></script>
-    <script src="../../iron-test-helpers/mock-interactions.js"></script>
-
-    <!-- Step 1: import the element to test -->
     <link rel="import" href="../clipboard-copy.html">
   </head>
   <body>
@@ -32,12 +29,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
     /* global fixture, assert */
     suite('basic', function() {
+      var content = 'test-123';
       var element;
       setup(function() {
         element = fixture('basic');
       });
-      test('`clipboard-copy` should be initialized', function() {
-        assert.equal(element.isAttached, true, 'element.isAttached equals true');
+
+      test('content-copy custom event is dispatched', function(done) {
+        element.content = content;
+        element.addEventListener('content-copy', function clb(e) {
+          element.removeEventListener('content-copy', clb);
+          assert.isTrue(e.cancelable, 'event is cancelable');
+          assert.equal(e.detail.value, content, 'Contains the value');
+          done();
+        });
+        element.copy();
+      });
+
+      test('content-copied custom event is dispatched', function(done) {
+        element.content = content;
+        element.addEventListener('content-copied', function clb(e) {
+          element.removeEventListener('content-copied', clb);
+          assert.isFalse(e.cancelable, 'event is not cancelable');
+          assert.isFalse(e.bubbles, 'event does not bubbles');
+          done();
+        });
+        element.copy();
+      });
+
+      test('content-copied is dispatched when content-copy is canceled', function(done) {
+        var canceled = false;
+        element.content = content;
+        element.addEventListener('content-copy', function clb(e) {
+          element.removeEventListener('content-copy', clb);
+          e.preventDefault();
+          canceled = true;
+        });
+        element.addEventListener('content-copied', function clb() {
+          element.removeEventListener('content-copied', clb);
+          assert.isTrue(canceled);
+          done();
+        });
+        element.copy();
       });
     });
     </script>
