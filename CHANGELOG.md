@@ -1,3 +1,13 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.2...0.1.3) (2017-10-07)
+
+
+### Fix
+
+* Fixed return value when event is handled outside the element. ([c8bef6fbde77201a0b20d47cb36592d20dd8ee6e](https://github.com/advanced-rest-client/clipboard-copy/commit/c8bef6fbde77201a0b20d47cb36592d20dd8ee6e))
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.1...0.1.2) (2017-10-07)
 
