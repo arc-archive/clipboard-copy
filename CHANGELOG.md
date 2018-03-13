@@ -1,3 +1,9 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.3...2.0.1) (2018-03-13)
+
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.3...0.1.4) (2017-10-07)
 

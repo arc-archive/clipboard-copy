@@ -23,44 +23,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
   <link rel="import" href="../../paper-input/paper-input.html">
   <link rel="import" href="../../arc-icons/arc-icons.html">
-
   <link rel="import" href="../clipboard-copy.html">
-
-  <style is="custom-style" include="demo-pages-shared-styles">
-
-    .vertical-section-container {
-      max-width: 600px;
-    }
-
-  </style>
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </custom-style>
 </head>
 <body unresolved>
-  <div class="vertical-section-container centered">
-    <h3>The `clipboard-copy`</h3>
-    <demo-snippet>
-      <template is="dom-bind">
+  <dom-bind id="demo">
+    <template is="dom-bind">
+      <div class="vertical-section-container centered">
+        <h3>The `clipboard-copy`</h3>
         <paper-input label="Text to copy" value="{{value}}"></paper-input>
         <paper-icon-button icon="arc:content-copy"></paper-icon-button>
         <clipboard-copy content="[[value]]"></clipboard-copy>
-        <script>
-          var resetButton = function() {
-            document.querySelector('paper-icon-button').icon = 'arc:content-copy';
-          };
-          document.querySelector('paper-icon-button').addEventListener('click', function(e) {
-            var button = Polymer.dom(e).localTarget;
-            if (document.querySelector('clipboard-copy').copy()) {
-              button.icon = 'arc:done';
-            } else {
-              button.icon = 'arc:error';
-            }
-            // Return to the copy button after a second.
-            setTimeout(function() {
-              resetButton();
-            }, 1000);
-          });
-        </script>
-      </template>
-    </demo-snippet>
-  </div>
+      </div>
+    </template>
+  </dom-bind>
+  <script>
+    var resetButton = function() {
+      document.querySelector('paper-icon-button').icon = 'arc:content-copy';
+    };
+    document.querySelector('paper-icon-button').addEventListener('click', function() {
+      var button = document.querySelector('paper-icon-button');
+      if (document.querySelector('clipboard-copy').copy()) {
+        button.icon = 'arc:done';
+      } else {
+        button.icon = 'arc:error';
+      }
+      // Return to the copy button after a second.
+      setTimeout(function() {
+        resetButton();
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
