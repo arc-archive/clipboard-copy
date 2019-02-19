@@ -1,36 +1,45 @@
 {
-  "name": "@api-components/clipboard-copy",
-  "version": "2.0.1",
-  "license": "Apache-2.0",
   "description": "An element that copies a text to clipboard",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "clipboard",
+    "copy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/advanced-rest-client/clipboard-copy.git"
+  },
+  "name": "@api-components/clipboard-copy",
+  "version": "3.0.0-preview.1",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.1.1",
-    "bower": "^1.8.0",
+    "@advanced-rest-client/arc-icons": "^3.0.0-preview.1",
+    "@polymer/gen-typescript-declarations": "^1.6.1",
     "@polymer/test-fixture": "^4.0.2",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "sinon": "^7.2.3",
-    "wct-mocha": "^1.0.0"
+    "wct-mocha": "^1.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/paper-input": "^3.0.0",
+    "@polymer/paper-icon-button": "^3.0.0"
   },
-  "private": false,
-  "main": "clipboard-copy.html",
+  "main": "clipboard-copy.js",
   "author": "The Advanced REST client authors <arc@mulesoft.com>",
   "scripts": {
     "lint": "node_modules/.bin/polymer lint clipboard-copy.html",
     "test-sauce": "node_modules/.bin/polymer test --plugin sauce --job-name \"clipboard-copy:local-test\"",
     "test": "node_modules/.bin/polymer test --plugin local",
-    "update-types": "bower install && gen-typescript-declarations --deleteExisting --outDir ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/advanced-rest-client/clipboard-copy.git"
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
   },
   "bugs": {
     "url": "https://github.com/advanced-rest-client/clipboard-copy/issues",
     "email": "arc@mulesoft.com"
   },
   "dependencies": {
-    "@advanced-rest-client/arc-icons": "^3.0.0-preview.1",
-    "polymer-modulizer": "^0.4.3"
+    "@polymer/polymer": "^3.0.0"
   }
 }
