@@ -70,15 +70,19 @@ the License.
      * @return {Boolean} True if the content has been copied to the clipboard
      * and false if there was an error.
      */
-    copy() {
+     copy() {
       if (this._beforeCopy()) {
         return this._notifyCopied();
       }
       this.setAttribute('copying', true);
-      var range = document.createRange();
+      const range = document.createRange();
       range.selectNode(this.$.content);
-      window.getSelection().addRange(range);
-      var result = false;
+      const sel = window.getSelection();
+      // Note(cg): we need to remove all selections before - otherwise nothing happens
+      // see https://stackoverflow.com/questions/45090073/chrome-selection-addrange-does-not-select-an-execcommandcopy-use-case.
+      sel.removeAllRanges();
+      sel.addRange(range);
+      let result = false;
       try {
         result = document.execCommand('copy');
         this._notifyCopied();
