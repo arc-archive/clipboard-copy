@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git://github.com/advanced-rest-client/clipboard-copy.git"
   },
-  "name": "@api-components/clipboard-copy",
+  "name": "@advanced-rest-client/clipboard-copy",
   "version": "3.0.0-preview.1",
   "license": "Apache-2.0",
   "devDependencies": {
