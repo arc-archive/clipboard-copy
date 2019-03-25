@@ -53,7 +53,7 @@
         }
       ]
     },
-    "istanbul": {
+    "@advanced-rest-client/wct-istanbub": {
       "dir": "./coverage",
       "reporters": [
         "text-summary",
@@ -68,13 +68,11 @@
         "**/tasks/**"
       ],
       "thresholds": {
-        "thresholds": {
-          "global": {
-            "statements": 80,
-            "branches": 80,
-            "functions": 90,
-            "lines": 80
-          }
+        "global": {
+          "statements": 80,
+          "branches": 80,
+          "functions": 90,
+          "lines": 80
         }
       }
     }
