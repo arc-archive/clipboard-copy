@@ -41,3 +41,8 @@
 
 
 
+# [3.0.0](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.3...3.0.0) (2019-06-15)
+
+
+
+
