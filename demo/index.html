@@ -8,51 +8,10 @@
   <title>clipboard-copy demo</title>
 
   <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-  <script src="../node_modules/web-animations-js/web-animations-next.min.js"></script>
-
-  <script type="module">
-    import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-    import '@polymer/polymer/lib/elements/dom-bind.js';
-    import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-    import '@polymer/paper-icon-button/paper-icon-button.js';
-    import '@polymer/paper-input/paper-input.js';
-    import '@advanced-rest-client/arc-icons/arc-icons.js';
-    import '../api-body-document.js';
-  </script>
-
-  <script type="module" src="../clipboard-copy.js"></script>
-  <custom-style>
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
-  </custom-style>
+  <script type="module" src="../node_modules/@advanced-rest-client/arc-demo-helper/arc-demo-helper.js"></script>
 </head>
-<body unresolved>
-  <dom-bind id="demo">
-    <template is="dom-bind">
-      <div class="vertical-section-container centered">
-        <h3>The `clipboard-copy`</h3>
-        <paper-input label="Text to copy" value="{{value}}"></paper-input>
-        <paper-icon-button icon="arc:content-copy"></paper-icon-button>
-        <clipboard-copy content="[[value]]"></clipboard-copy>
-      </div>
-    </template>
-  </dom-bind>
-  <script type="module">
-  const resetButton = function() {
-    document.querySelector('paper-icon-button').icon = 'arc:content-copy';
-  };
-  document.querySelector('paper-icon-button').addEventListener('click', function() {
-    const button = document.querySelector('paper-icon-button');
-    if (document.querySelector('clipboard-copy').copy()) {
-      button.icon = 'arc:done';
-    } else {
-      button.icon = 'arc:error';
-    }
-    // Return to the copy button after a second.
-    setTimeout(function() {
-      resetButton();
-    }, 1000);
-  });
-  </script>
+<body>
+  <div id="demo"></div>
+  <script type="module" src="index.js"></script>
 </body>
 </html>

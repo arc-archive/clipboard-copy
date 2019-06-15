@@ -11,8 +11,6 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
-import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
 /**
  * An element that copies a text to clipboard.
  *
@@ -35,37 +33,27 @@ import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
  * @memberof LogicElements
  * @demo demo/index.html
  */
-class ClipboardCopy extends PolymerElement {
-  static get template() {
-    return html`
-    <style>
-    :host {
-      display: none;
-    }
-
-    :host([copying]) {
-      display: inline;
-      width: 0;
-      height: 0;
-      border: none;
-      overflow: hidden;
-    }
-    </style>
-    <div id="content">[[content]]</div>
-`;
+class ClipboardCopy extends HTMLElement {
+  static get observedAttributes() {
+    return ['content'];
   }
 
-  static get is() {
-    return 'clipboard-copy';
+  get content() {
+    return this._content;
   }
-  static get properties() {
-    return {
-      /**
-       * A content to be copied to the clipboard.
-       * It must be set before calling the `copy` function.
-       */
-      content: String
-    };
+  /**
+   * A content to be copied to the clipboard.
+   * It must be set before calling the `copy` function.
+   *
+   * @param {String} value Content to copy
+   */
+  set content(value) {
+    this._content = value;
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // Only "content" is observed
+    this.content = newValue;
   }
   /**
    * Execute content copy.
@@ -77,24 +65,31 @@ class ClipboardCopy extends PolymerElement {
     if (this._beforeCopy()) {
       return this._notifyCopied();
     }
-    this.setAttribute('copying', true);
-    const range = document.createRange();
-    range.selectNode(this.$.content);
-    window.getSelection().addRange(range);
+    const el = document.createElement('textarea');
+    el.value = this.content;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    const selected = document.getSelection().rangeCount > 0 ?
+      document.getSelection().getRangeAt(0) : false;
+    el.select();
     let result = false;
     try {
       result = document.execCommand('copy');
       this._notifyCopied();
     } catch (err) {
-      // Copy command is not available
-      console.error(err);
+      console.warn(err);
       const ev = new CustomEvent('content-copy-error', {
         bubbles: false
       });
       this.dispatchEvent(ev);
     }
-    window.getSelection().removeAllRanges();
-    this.removeAttribute('copying');
+    document.body.removeChild(el);
+    document.getSelection().removeAllRanges();
+    if (selected) {
+      document.getSelection().addRange(selected);
+    }
     return result;
   }
   /**
@@ -156,4 +151,4 @@ class ClipboardCopy extends PolymerElement {
    * @param {String} value A content t be copied to clipboard.
    */
 }
-window.customElements.define(ClipboardCopy.is, ClipboardCopy);
+window.customElements.define('clipboard-copy', ClipboardCopy);

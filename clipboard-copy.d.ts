@@ -10,6 +10,7 @@
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
+// tslint:disable:no-any describes the API as best we are able today
 
 declare namespace LogicElements {
 
@@ -30,13 +31,9 @@ declare namespace LogicElements {
    * < /script>
    * ```
    */
-  class ClipboardCopy extends PolymerElement {
-
-    /**
-     * A content to be copied to the clipboard.
-     * It must be set before calling the `copy` function.
-     */
-    content: string|null|undefined;
+  class ClipboardCopy extends HTMLElement {
+    content: any;
+    attributeChangedCallback(name: any, oldValue: any, newValue: any): void;
 
     /**
      * Execute content copy.
@@ -63,11 +60,6 @@ declare namespace LogicElements {
   }
 }
 
-declare global {
-
-  interface HTMLElementTagNameMap {
-    "clipboard-copy": LogicElements.ClipboardCopy;
-  }
+interface HTMLElementTagNameMap {
+  "clipboard-copy": LogicElements.ClipboardCopy;
 }
-
-export {};
