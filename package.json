@@ -11,7 +11,7 @@
     "url": "git://github.com/advanced-rest-client/clipboard-copy.git"
   },
   "name": "@advanced-rest-client/clipboard-copy",
-  "version": "3.0.0-preview.1",
+  "version": "3.0.0",
   "license": "Apache-2.0",
   "devDependencies": {
     "@advanced-rest-client/arc-demo-helper": "^1.0.1",
