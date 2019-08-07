@@ -46,3 +46,12 @@
 
 
 
+## [3.0.1](https://github.com/advanced-rest-client/clipboard-copy/compare/0.1.3...3.0.1) (2019-08-07)
+
+
+### Bug Fixes
+
+* upgrading project to latest ARC standard to fix audit errors ([0a89e58](https://github.com/advanced-rest-client/clipboard-copy/commit/0a89e58))
+
+
+
