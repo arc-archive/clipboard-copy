@@ -72,6 +72,7 @@ class ClipboardCopy extends HTMLElement {
     el.style.left = '-9999px';
     document.body.appendChild(el);
     const selected = document.getSelection().rangeCount > 0 ?
+      /* istanbul ignore next */
       document.getSelection().getRangeAt(0) : false;
     el.select();
     let result = false;
@@ -79,14 +80,16 @@ class ClipboardCopy extends HTMLElement {
       result = document.execCommand('copy');
       this._notifyCopied();
     } catch (err) {
-      console.warn(err);
+      /* istanbul ignore next */
       const ev = new CustomEvent('content-copy-error', {
         bubbles: false
       });
+      /* istanbul ignore next */
       this.dispatchEvent(ev);
     }
     document.body.removeChild(el);
     document.getSelection().removeAllRanges();
+    /* istanbul ignore if */
     if (selected) {
       document.getSelection().addRange(selected);
     }
