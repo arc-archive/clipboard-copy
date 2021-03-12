@@ -1,0 +1,39 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "clipboard-copy",
+      "path": "./clipboard-copy.js",
+      "description": "An element that copies a text to clipboard.\n\n### Example\n\n```html\n<clipboard-copy content=\"test\"></clipboard-copy>\n<script>\nconst elm = document.querySelector('clipboard-copy');\nif(elm.copy()) {\n  console.info('Content has been copied to the clipboard');\n} else {\n  console.error('Content copy error. This browser is ancient!');\n}\n< /script>\n```",
+      "attributes": [
+        {
+          "name": "content",
+          "description": "A content to be copied to the clipboard.\nIt must be set before calling the `copy` function.",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "content",
+          "attribute": "content",
+          "description": "A content to be copied to the clipboard.\nIt must be set before calling the `copy` function.",
+          "type": "string"
+        }
+      ],
+      "events": [
+        {
+          "name": "content-copied",
+          "description": "Fired when the content has been copied to the clipboard."
+        },
+        {
+          "name": "content-copy-error",
+          "description": "Fired when there was an error copying content to clipboard."
+        },
+        {
+          "name": "content-copy",
+          "description": "Fired when executing copy function."
+        }
+      ]
+    }
+  ]
+}
