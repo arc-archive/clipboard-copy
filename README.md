@@ -1,21 +1,16 @@
-[![Published on NPM](https://img.shields.io/npm/v/@advanced-rest-client/clipboard-copy.svg)](https://www.npmjs.com/package/@advanced-rest-client/clipboard-copy)
-
-[![Build Status](https://travis-ci.org/advanced-rest-client/clipboard-copy.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/clipboard-copy)
-
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/clipboard-copy)
-
-## clipboard-copy
+# clipboard-copy
 
 An element that copies a text to clipboard.
 
-### API components
+[![Published on NPM](https://img.shields.io/npm/v/@advanced-rest-client/clipboard-copy.svg)](https://www.npmjs.com/package/@advanced-rest-client/clipboard-copy)
 
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
+[![Tests and publishing](https://github.com/advanced-rest-client/clipboard-copy/actions/workflows/deployment.yml/badge.svg)](https://github.com/advanced-rest-client/clipboard-copy/actions/workflows/deployment.yml)
 
 ## Usage
 
 ### Installation
-```
+
+```sh
 npm install --save @advanced-rest-client/clipboard-copy
 ```
 
@@ -25,7 +20,7 @@ npm install --save @advanced-rest-client/clipboard-copy
 <script type="module" src="/node_modules/@advanced-rest-client/clipboard-copy/clipboard-copy.js"></script>
 <clipboard-copy content="test"></clipboard-copy>
 <script>
-const elm = document.querySelectior('clipboard-copy');
+const elm = document.querySelector('clipboard-copy');
 if(elm.copy()) {
  console.info('Content has been copied to the clipboard');
 } else {
@@ -50,7 +45,7 @@ class SampleElement extends LitElement {
 customElements.define('sample-element', SampleElement);
 ```
 
-### Development
+## Development
 
 ```sh
 git clone https://github.com/advanced-rest-client/clipboard-copy
@@ -65,6 +60,7 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
